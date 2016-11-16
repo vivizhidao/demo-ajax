@@ -1,0 +1,34 @@
+[
+    {
+        "provinceName":"河南省",
+        "cities":[
+             {"cityName":"商丘市"},
+             {"cityName":"洛阳市"},
+             {"cityName":"安阳市"},
+             {"cityName":"南阳市"},
+             {"cityName":"开封市"},
+             {"cityName":"信阳市"},
+             {"cityName":"鹤壁市"},
+             {"cityName":"濮阳市"},
+             {"cityName":"驻马店市"},
+             {"cityName":"郑州市"},
+             {"cityName":"三门峡市"}
+        ]
+    },
+    {
+            "provinceName":"湖北省",
+            "cities":[
+                 {"cityName":"武汉市"},
+                 {"cityName":"荆州市"},
+                 {"cityName":"襄樊市"},
+                 {"cityName":"孝感市"},
+                 {"cityName":"仙桃市"},
+                 {"cityName":"潜江市"},
+                 {"cityName":"黄冈市"},
+                 {"cityName":"咸宁市"},
+                 {"cityName":"恩施市"},
+                 {"cityName":"宜昌市"},
+                 {"cityName":"鄂州市"}
+            ]
+        }
+]

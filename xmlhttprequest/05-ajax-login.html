@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+用户名:<input type="text" id="username"/>
+
+<input type="button" value="检测用户名是否存在">
+<div>
+
+</div>
+
+<script>
+    function fn(){
+        localStorage.setItem("username",document.querySelector("input[type=text]").value);
+    }
+
+    document.querySelector("input[type=button]").onclick= function () {
+        var xhr=new XMLHttpRequest();
+        xhr.open("POST","05-ajax-login.php");
+
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+        xhr.send("username="+document.getElementById("username").value);
+
+        xhr.onreadystatechange= function () {
+            if(xhr.readyState==4 && xhr.status==200){
+                var data=xhr.responseText;
+
+                document.querySelector("div").innerHTML=data;
+               //fn();
+                localStorage.setItem("username",document.querySelector("input[type=text]").value);
+            }
+        };
+
+    }
+
+
+
+
+</script>
+</body>
+</html>

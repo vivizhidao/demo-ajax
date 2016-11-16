@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <style type="text/css">
+        *
+        {
+            margin:8px;
+        }
+    </style>
+</head>
+<body>
+    <label for="txt_username">
+        姓名:</label>
+    <input type="text" id="txt_username" />
+    <br />
+    <label for="txt_age">
+        年龄:</label>
+    <input type="text" id="txt_age" />
+    <br />
+    <input type="button" value="GET" id="btn_get" onclick="btn_get_click();" />
+    <input type="button" value="POST" id="btn_post" onclick="btn_post_click();" />
+    <div id="result"></div>
+
+
+    <script>
+        //get
+        function btn_get_click() {
+            var xmlHttp = window.XMLHttpRequest ?
+                    new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+
+            var username = document.getElementById("txt_username").value;
+            var age = document.getElementById("txt_age").value;
+
+            //添加参数,以求每次访问不同的url,以避免缓存问题
+            xmlHttp.open("get", "Server.aspx?username=" + encodeURIComponent(username)
+                    + "&age=" + encodeURIComponent(age) + "&random=" + Math.random());
+
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    document.getElementById("result").innerHTML = xmlHttp.responseText;
+                }
+            }
+
+            //发送请求,参数为null
+            xmlHttp.send(null);
+        }
+
+        //post
+        function btn_post_click() {
+            var xmlHttp = window.XMLHttpRequest ?
+                    new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+
+            var username = document.getElementById("txt_username").value;
+            var age = document.getElementById("txt_age").value;
+
+            var data = "username=" + encodeURIComponent(username)
+                    + "&age=" + encodeURIComponent(age);
+
+            //不用担心缓存问题
+            xmlHttp.open("post", "Server.aspx", true);
+
+            //必须设置,否则服务器端收不到参数
+            xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    document.getElementById("result").innerHTML = xmlHttp.responseText;
+                }
+            }
+
+            //发送请求,要data数据
+            xmlHttp.send(data);
+        }
+
+    </script>
+</body>
+</html>

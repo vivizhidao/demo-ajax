@@ -1,0 +1,5 @@
+[
+  {"username":"张三","sex":"男","desc":"一个不认识的人","imageUrl":"image/1.jpg"},
+  {"username":"李四","sex":"女","desc":"一个我认识的人","imageUrl":"image/2.jpg"},
+  {"username":"王五","sex":"女","desc":"一个我认识的人","imageUrl":"image/3.jpg"}
+]

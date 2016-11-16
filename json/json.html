@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            width: 600px;
+            border-collapse: collapse;
+        }
+
+        td {
+            height: 40px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        img {
+            height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+<input type="button" value="获取用户信息" id="buttonId">
+<table>
+    <tr>
+        <td>姓名</td>
+        <td>性别</td>
+        <td>描述</td>
+        <td>照片</td>
+    </tr>
+</table>
+
+<script>
+    window.onload = function () {
+        document.querySelector("#buttonId").onclick = function () {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", "json.php");
+            xhr.send(null);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = xhr.responseText;
+                    console.log(data);
+                    var obj = JSON.parse(data);
+                    //var obj=eval("("+data+")");
+                    console.log(obj);
+
+
+                    for (var j = 0; j < obj.length; j++) {
+                        var tr = document.createElement("tr");
+                        var td1 = document.createElement("td");
+                        td1.innerHTML = obj[j].username;
+                        var td2 = document.createElement("td");
+                        td2.innerHTML = obj[j].sex;
+                        var td3 = document.createElement("td");
+                        td3.innerHTML = obj[j].desc;
+                        var td4 = document.createElement("td");
+                        var img = document.createElement("img");
+                        img.setAttribute("src", obj[j].imageUrl);
+                        td4.appendChild(img);
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+
+                        document.querySelector("table").appendChild(tr);
+                    }
+
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

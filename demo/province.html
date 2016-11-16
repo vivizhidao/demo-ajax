@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<select id="provinceId">
+    <option>请选择省份</option>
+</select>
+<select id="cityId">
+    <option>请选择城市</option>
+</select>
+
+
+<script>
+    window.onload=function(){
+        var data;
+       var xhr=new XMLHttpRequest();
+       xhr.open("get","province.php");
+        xhr.send(null);
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                data=xhr.responseText;
+                var obj=JSON.parse(data);
+                for(var i=0;i<obj.length;i++){
+                    var option=document.createElement("option");
+                    option.innerHTML=obj[i].provinceName;
+                    document.querySelector("#provinceId").appendChild(option);
+
+                }
+            }
+
+
+        };
+        Document.querySelector("#provinceId").Onchange= function () {
+           var provinceName=this.value;
+            var obj=JSON.parse(data);
+           for(var j=0;j<obj.length;j++){
+
+               if(obj[j].provinceName==provinceName){
+                   var cities=obj[j].cities;
+                   document.querySelector("#cityId").innerHTML="<opion>请选择城市</option>";
+                   for(var z=0;z<cities.length;z++){
+                       var cityName=cities[z].cityName;
+                       var option=document.createElement("option");
+                       option.innerHTML=cityName;
+                       document.querySelector("#cityId").appendChild(option);
+                   }
+               }
+           }
+        }
+
+    }
+
+
+
+
+</script>
+</body>
+</html>

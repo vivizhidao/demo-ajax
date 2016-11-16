@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="ajax请求">
+<div></div>
+
+
+<script>
+
+    document.querySelector("input").onclick = function () {
+        //1:创建这个对象
+        var xhr = new XMLHttpRequest();
+
+        //2:打开链接
+        xhr.open("GET", "02-ajax.php");
+
+        //3:发送数据
+        xhr.send(null);
+
+        //4:接收数据
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var data = xhr.responseText;
+                document.querySelector("div").innerHTML=data;
+                alert(data);
+            }
+        }
+    }
+
+
+</script>
+</body>
+</html>
